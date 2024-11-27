@@ -5,7 +5,7 @@ import 'subtask_data_model.dart';
 part 'task_data_model.g.dart';
 
 @collection
-class TaskEntity {
+class TaskDataModel {
   final Id id = Isar.autoIncrement;
   final String title;
 
@@ -14,5 +14,5 @@ class TaskEntity {
   final subTasks = IsarLinks<SubTaskDataModel>();
   bool isDone;
 
-  TaskEntity(this.title, this.desc, this.color, this.isDone);
+  TaskDataModel(this.title, this.desc, this.color, this.isDone);
 }

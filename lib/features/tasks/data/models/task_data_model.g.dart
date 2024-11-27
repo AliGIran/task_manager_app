@@ -9,13 +9,13 @@ part of 'task_data_model.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetTaskEntityCollection on Isar {
-  IsarCollection<TaskEntity> get taskEntitys => this.collection();
+extension GetTaskDataModelCollection on Isar {
+  IsarCollection<TaskDataModel> get taskDataModels => this.collection();
 }
 
-const TaskEntitySchema = CollectionSchema(
-  name: r'TaskEntity',
-  id: -2911998186285533288,
+const TaskDataModelSchema = CollectionSchema(
+  name: r'TaskDataModel',
+  id: -932320280796006666,
   properties: {
     r'color': PropertySchema(
       id: 0,
@@ -38,29 +38,29 @@ const TaskEntitySchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _taskEntityEstimateSize,
-  serialize: _taskEntitySerialize,
-  deserialize: _taskEntityDeserialize,
-  deserializeProp: _taskEntityDeserializeProp,
+  estimateSize: _taskDataModelEstimateSize,
+  serialize: _taskDataModelSerialize,
+  deserialize: _taskDataModelDeserialize,
+  deserializeProp: _taskDataModelDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {
     r'subTasks': LinkSchema(
-      id: 7675673912187605555,
+      id: -256795844954572067,
       name: r'subTasks',
       target: r'SubTaskDataModel',
       single: false,
     )
   },
   embeddedSchemas: {},
-  getId: _taskEntityGetId,
-  getLinks: _taskEntityGetLinks,
-  attach: _taskEntityAttach,
+  getId: _taskDataModelGetId,
+  getLinks: _taskDataModelGetLinks,
+  attach: _taskDataModelAttach,
   version: '3.1.0+1',
 );
 
-int _taskEntityEstimateSize(
-  TaskEntity object,
+int _taskDataModelEstimateSize(
+  TaskDataModel object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -75,8 +75,8 @@ int _taskEntityEstimateSize(
   return bytesCount;
 }
 
-void _taskEntitySerialize(
-  TaskEntity object,
+void _taskDataModelSerialize(
+  TaskDataModel object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -87,13 +87,13 @@ void _taskEntitySerialize(
   writer.writeString(offsets[3], object.title);
 }
 
-TaskEntity _taskEntityDeserialize(
+TaskDataModel _taskDataModelDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = TaskEntity(
+  final object = TaskDataModel(
     reader.readString(offsets[3]),
     reader.readStringOrNull(offsets[1]),
     reader.readLongOrNull(offsets[0]),
@@ -102,7 +102,7 @@ TaskEntity _taskEntityDeserialize(
   return object;
 }
 
-P _taskEntityDeserializeProp<P>(
+P _taskDataModelDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -122,31 +122,33 @@ P _taskEntityDeserializeProp<P>(
   }
 }
 
-Id _taskEntityGetId(TaskEntity object) {
+Id _taskDataModelGetId(TaskDataModel object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _taskEntityGetLinks(TaskEntity object) {
+List<IsarLinkBase<dynamic>> _taskDataModelGetLinks(TaskDataModel object) {
   return [object.subTasks];
 }
 
-void _taskEntityAttach(IsarCollection<dynamic> col, Id id, TaskEntity object) {
+void _taskDataModelAttach(
+    IsarCollection<dynamic> col, Id id, TaskDataModel object) {
   object.subTasks
       .attach(col, col.isar.collection<SubTaskDataModel>(), r'subTasks', id);
 }
 
-extension TaskEntityQueryWhereSort
-    on QueryBuilder<TaskEntity, TaskEntity, QWhere> {
-  QueryBuilder<TaskEntity, TaskEntity, QAfterWhere> anyId() {
+extension TaskDataModelQueryWhereSort
+    on QueryBuilder<TaskDataModel, TaskDataModel, QWhere> {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension TaskEntityQueryWhere
-    on QueryBuilder<TaskEntity, TaskEntity, QWhereClause> {
-  QueryBuilder<TaskEntity, TaskEntity, QAfterWhereClause> idEqualTo(Id id) {
+extension TaskDataModelQueryWhere
+    on QueryBuilder<TaskDataModel, TaskDataModel, QWhereClause> {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterWhereClause> idEqualTo(
+      Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -155,7 +157,8 @@ extension TaskEntityQueryWhere
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterWhereClause> idNotEqualTo(Id id) {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterWhereClause> idNotEqualTo(
+      Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -177,7 +180,8 @@ extension TaskEntityQueryWhere
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterWhereClause> idGreaterThan(Id id,
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterWhereClause> idGreaterThan(
+      Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -186,7 +190,8 @@ extension TaskEntityQueryWhere
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterWhereClause> idLessThan(Id id,
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterWhereClause> idLessThan(
+      Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -195,7 +200,7 @@ extension TaskEntityQueryWhere
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterWhereClause> idBetween(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -212,9 +217,10 @@ extension TaskEntityQueryWhere
   }
 }
 
-extension TaskEntityQueryFilter
-    on QueryBuilder<TaskEntity, TaskEntity, QFilterCondition> {
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> colorIsNull() {
+extension TaskDataModelQueryFilter
+    on QueryBuilder<TaskDataModel, TaskDataModel, QFilterCondition> {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      colorIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'color',
@@ -222,7 +228,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> colorIsNotNull() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      colorIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'color',
@@ -230,8 +237,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> colorEqualTo(
-      int? value) {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      colorEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'color',
@@ -240,7 +247,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> colorGreaterThan(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      colorGreaterThan(
     int? value, {
     bool include = false,
   }) {
@@ -253,7 +261,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> colorLessThan(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      colorLessThan(
     int? value, {
     bool include = false,
   }) {
@@ -266,7 +275,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> colorBetween(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      colorBetween(
     int? lower,
     int? upper, {
     bool includeLower = true,
@@ -283,7 +293,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descIsNull() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'desc',
@@ -291,7 +302,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descIsNotNull() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'desc',
@@ -299,7 +311,7 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descEqualTo(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition> descEqualTo(
     String? value, {
     bool caseSensitive = true,
   }) {
@@ -312,7 +324,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descGreaterThan(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descGreaterThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -327,7 +340,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descLessThan(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descLessThan(
     String? value, {
     bool include = false,
     bool caseSensitive = true,
@@ -342,7 +356,7 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descBetween(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition> descBetween(
     String? lower,
     String? upper, {
     bool includeLower = true,
@@ -361,7 +375,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descStartsWith(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -374,7 +389,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descEndsWith(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -387,9 +403,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descContains(
-      String value,
-      {bool caseSensitive = true}) {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'desc',
@@ -399,7 +414,7 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descMatches(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition> descMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -411,7 +426,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descIsEmpty() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'desc',
@@ -420,7 +436,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> descIsNotEmpty() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      descIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'desc',
@@ -429,7 +446,7 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> idEqualTo(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition> idEqualTo(
       Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -439,7 +456,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      idGreaterThan(
     Id value, {
     bool include = false,
   }) {
@@ -452,7 +470,7 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> idLessThan(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
   }) {
@@ -465,7 +483,7 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> idBetween(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -482,8 +500,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> isDoneEqualTo(
-      bool value) {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      isDoneEqualTo(bool value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'isDone',
@@ -492,7 +510,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleEqualTo(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -505,7 +524,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleGreaterThan(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -520,7 +540,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleLessThan(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -535,7 +556,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleBetween(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -554,7 +576,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleStartsWith(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -567,7 +590,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleEndsWith(
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -580,9 +604,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleContains(
-      String value,
-      {bool caseSensitive = true}) {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'title',
@@ -592,9 +615,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'title',
@@ -604,7 +626,8 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> titleIsEmpty() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
+      titleIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'title',
@@ -613,7 +636,7 @@ extension TaskEntityQueryFilter
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition>
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
       titleIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -624,40 +647,40 @@ extension TaskEntityQueryFilter
   }
 }
 
-extension TaskEntityQueryObject
-    on QueryBuilder<TaskEntity, TaskEntity, QFilterCondition> {}
+extension TaskDataModelQueryObject
+    on QueryBuilder<TaskDataModel, TaskDataModel, QFilterCondition> {}
 
-extension TaskEntityQueryLinks
-    on QueryBuilder<TaskEntity, TaskEntity, QFilterCondition> {
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition> subTasks(
+extension TaskDataModelQueryLinks
+    on QueryBuilder<TaskDataModel, TaskDataModel, QFilterCondition> {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition> subTasks(
       FilterQuery<SubTaskDataModel> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'subTasks');
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition>
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
       subTasksLengthEqualTo(int length) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'subTasks', length, true, length, true);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition>
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
       subTasksIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'subTasks', 0, true, 0, true);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition>
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
       subTasksIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'subTasks', 0, false, 999999, true);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition>
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
       subTasksLengthLessThan(
     int length, {
     bool include = false,
@@ -667,7 +690,7 @@ extension TaskEntityQueryLinks
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition>
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
       subTasksLengthGreaterThan(
     int length, {
     bool include = false,
@@ -677,7 +700,7 @@ extension TaskEntityQueryLinks
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterFilterCondition>
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterFilterCondition>
       subTasksLengthBetween(
     int lower,
     int upper, {
@@ -691,142 +714,142 @@ extension TaskEntityQueryLinks
   }
 }
 
-extension TaskEntityQuerySortBy
-    on QueryBuilder<TaskEntity, TaskEntity, QSortBy> {
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> sortByColor() {
+extension TaskDataModelQuerySortBy
+    on QueryBuilder<TaskDataModel, TaskDataModel, QSortBy> {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> sortByColor() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'color', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> sortByColorDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> sortByColorDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'color', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> sortByDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> sortByDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'desc', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> sortByDescDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> sortByDescDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'desc', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> sortByIsDone() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> sortByIsDone() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isDone', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> sortByIsDoneDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> sortByIsDoneDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isDone', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> sortByTitle() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> sortByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> sortByTitleDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> sortByTitleDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.desc);
     });
   }
 }
 
-extension TaskEntityQuerySortThenBy
-    on QueryBuilder<TaskEntity, TaskEntity, QSortThenBy> {
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByColor() {
+extension TaskDataModelQuerySortThenBy
+    on QueryBuilder<TaskDataModel, TaskDataModel, QSortThenBy> {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByColor() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'color', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByColorDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByColorDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'color', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'desc', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByDescDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByDescDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'desc', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenById() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByIsDone() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByIsDone() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isDone', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByIsDoneDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByIsDoneDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isDone', Sort.desc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByTitle() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QAfterSortBy> thenByTitleDesc() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QAfterSortBy> thenByTitleDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.desc);
     });
   }
 }
 
-extension TaskEntityQueryWhereDistinct
-    on QueryBuilder<TaskEntity, TaskEntity, QDistinct> {
-  QueryBuilder<TaskEntity, TaskEntity, QDistinct> distinctByColor() {
+extension TaskDataModelQueryWhereDistinct
+    on QueryBuilder<TaskDataModel, TaskDataModel, QDistinct> {
+  QueryBuilder<TaskDataModel, TaskDataModel, QDistinct> distinctByColor() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'color');
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QDistinct> distinctByDesc(
+  QueryBuilder<TaskDataModel, TaskDataModel, QDistinct> distinctByDesc(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'desc', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QDistinct> distinctByIsDone() {
+  QueryBuilder<TaskDataModel, TaskDataModel, QDistinct> distinctByIsDone() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isDone');
     });
   }
 
-  QueryBuilder<TaskEntity, TaskEntity, QDistinct> distinctByTitle(
+  QueryBuilder<TaskDataModel, TaskDataModel, QDistinct> distinctByTitle(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'title', caseSensitive: caseSensitive);
@@ -834,33 +857,33 @@ extension TaskEntityQueryWhereDistinct
   }
 }
 
-extension TaskEntityQueryProperty
-    on QueryBuilder<TaskEntity, TaskEntity, QQueryProperty> {
-  QueryBuilder<TaskEntity, int, QQueryOperations> idProperty() {
+extension TaskDataModelQueryProperty
+    on QueryBuilder<TaskDataModel, TaskDataModel, QQueryProperty> {
+  QueryBuilder<TaskDataModel, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<TaskEntity, int?, QQueryOperations> colorProperty() {
+  QueryBuilder<TaskDataModel, int?, QQueryOperations> colorProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'color');
     });
   }
 
-  QueryBuilder<TaskEntity, String?, QQueryOperations> descProperty() {
+  QueryBuilder<TaskDataModel, String?, QQueryOperations> descProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'desc');
     });
   }
 
-  QueryBuilder<TaskEntity, bool, QQueryOperations> isDoneProperty() {
+  QueryBuilder<TaskDataModel, bool, QQueryOperations> isDoneProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isDone');
     });
   }
 
-  QueryBuilder<TaskEntity, String, QQueryOperations> titleProperty() {
+  QueryBuilder<TaskDataModel, String, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });
